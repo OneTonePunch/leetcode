@@ -61,7 +61,7 @@ namespace LeetCode.TestService.Solutions
             ListNode result = new ListNode();
             ListNode current = result;
 
-            while(list1!=null&&list2!=null)
+            while(list1!=null||list2!=null)
             {
                 if (list1==null)
                 {
@@ -155,7 +155,16 @@ namespace LeetCode.TestService.Solutions
                 }
             };
 
+            var input2 = new List<ListNode>
+            {
+                new ListNode{ 
+                    val = 1,
+                },
+                null,
+            };
+
             result.Add(input1);
+            result.Add(input2);
             return result;
         }
        
