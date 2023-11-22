@@ -55,53 +55,49 @@ namespace LeetCode.TestService.Solutions
 
         private ListNode MergeTwoLists(ListNode list1, ListNode list2)
         {
-            //TODO
-            var result = new ListNode();
-            //var lis1Values = GetValues(list1);
-            //var lis2Values = GetValues(list2);
+            if (list1 == null && list2 == null)
+                return null;
 
-            var resultedList = new List<int>();
-
-
-            while (list1!=null||list2!=null)
+            var current = new ListNode();
+            if (list1 == null)
             {
-                if (list1 == null)
-                {
-                    resultedList.Add(list2.val);
-                    list2 = list2.next;
-                }
-
-                if (list2 == null)
-                {
-                    resultedList.Add(list1.val);
-                    list1 = list1.next;
-                }
-
-                if (list1.val == list2.val)
-                {
-                    resultedList.Add(list1.val);
-                    resultedList.Add(list2.val);
-
-                    list1 = list1.next;
-                    list2 = list2.next;
-                    continue;
-                }
-
-                if (list1.val < list2.val)
-                {
-                    resultedList.Add(list1.val);
-                    list1 = list1.next;
-                    continue;
-                }
-                else
-                {
-                    resultedList.Add(list2.val);
-                    list2 = list2.next;
-                    continue;
-                }
+                current.val = list2.val;
+                list2 = list2.next;
+                current.next = MergeTwoLists(list1, list2);
             }
-            result = CreateNode(resultedList);
-            return result;
+            else if (list2 == null)
+            {
+                current.val = list1.val;
+                list1 = list1.next;
+                current.next = MergeTwoLists(list1, list2);
+            }
+            else if (list1.val == list2.val)
+            {
+                current.val = list1.val;
+                current.next = new ListNode
+                {
+                    val = list2.val,
+                };
+
+                list1 = list1.next;
+                list2 = list2.next;
+
+                current.next.next = MergeTwoLists(list1, list2);
+            }
+            else if (list1.val < list2.val)
+            {
+                current.val = list1.val;
+                list1 = list1.next;
+                current.next = MergeTwoLists(list1, list2);
+            }
+            else if (list1.val > list2.val)
+            {
+                current.val = list2.val;
+                list2 = list2.next;
+                current.next = MergeTwoLists(list1, list2);
+            }
+
+            return current;
         }
 
         private ListNode CreateNode(List<int> collection)
