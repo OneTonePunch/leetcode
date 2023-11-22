@@ -60,12 +60,12 @@ namespace LeetCode.TestService.Solutions
 
             var current = new ListNode();
 
-            if (list1 == null|| list1.val > list2.val)
+            if (list1 == null||(list1.val > list2?.val))
             {
                 current.val = list2.val;
                 current.next = MergeTwoLists(list1, list2.next);
             }
-            else if (list2 == null|| list1.val <= list2.val)
+            else if (list2 == null||(list1?.val <= list2.val))
             {
                 current.val = list1.val;
                 current.next = MergeTwoLists(list1.next, list2);
