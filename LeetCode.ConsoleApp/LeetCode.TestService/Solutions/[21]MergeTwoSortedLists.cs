@@ -59,7 +59,7 @@ namespace LeetCode.TestService.Solutions
             var result = new ListNode();
             //var lis1Values = GetValues(list1);
             //var lis2Values = GetValues(list2);
-            var currentNode = result;
+
             var resultedList = new List<int>();
 
 
@@ -67,8 +67,7 @@ namespace LeetCode.TestService.Solutions
             {
                 if (list1 == null)
                 {
-                    result.val = list2.val;
-                    //resultedList.Add(list2.val);
+                    resultedList.Add(list2.val);
                     list2 = list2.next;
                 }
 
