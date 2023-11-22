@@ -57,7 +57,70 @@ namespace LeetCode.TestService.Solutions
         {
             //TODO
             var result = new ListNode();
-            var next = result.next;
+            var lis1Values = GetValues(list1);
+            var lis2Values = GetValues(list2);
+
+            var resultedList = new List<int>();
+            int firstIndex = 0;
+            int secondIndex = 0;
+
+            while (resultedList.Count < (lis1Values.Count + lis2Values.Count))
+            {
+                if (lis1Values[firstIndex] == lis2Values[secondIndex])
+                {
+                    resultedList.Add(lis1Values[firstIndex]);
+                    resultedList.Add(lis2Values[secondIndex]);
+                    firstIndex++;
+                    secondIndex++;
+                    continue;
+                }
+
+                if (lis1Values[firstIndex] < lis2Values[secondIndex])
+                {
+                    resultedList.Add(lis1Values[firstIndex]);
+                    firstIndex++;
+                    continue;
+                }
+                else
+                {
+                    resultedList.Add(lis2Values[secondIndex]);
+                    secondIndex++;
+                    continue;
+                }
+            }
+            result = CreateNode(resultedList);
+            return result;
+        }
+
+        private ListNode CreateNode(List<int> collection)
+        {
+            var index = collection.Count - 1;
+            ListNode child = null;
+            while (index >= 0)
+            {
+                var node = new ListNode
+                {
+                    val = collection[index],
+                    next = child,
+                };
+
+                index--;
+                child = node;
+            }
+
+            return child;
+        }
+        private List<int> GetValues(ListNode list1)
+        {
+
+            var result = new List<int> { list1.val };
+            
+            var current = list1;
+            while (current.next != null)
+            {
+                result.Add(current.next.val);
+                current = current.next;
+            }
 
             return result;
         }

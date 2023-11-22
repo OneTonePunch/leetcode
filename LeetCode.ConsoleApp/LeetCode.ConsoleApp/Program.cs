@@ -8,6 +8,7 @@ List<ITestRunner> tests = new List<ITestRunner>
      //new PalindromeNumber(),
      //new LongestCommonPrefix(),
      //new ValidParenthess()
+     new MergeTwoSortedLists()
 };
 
 foreach (var test in tests)
