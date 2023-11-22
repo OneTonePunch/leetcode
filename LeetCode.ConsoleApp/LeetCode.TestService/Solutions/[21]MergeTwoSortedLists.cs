@@ -62,14 +62,12 @@ namespace LeetCode.TestService.Solutions
             if (list1 == null)
             {
                 current.val = list2.val;
-                list2 = list2.next;
-                current.next = MergeTwoLists(list1, list2);
+                current.next = MergeTwoLists(list1, list2.next);
             }
             else if (list2 == null)
             {
                 current.val = list1.val;
-                list1 = list1.next;
-                current.next = MergeTwoLists(list1, list2);
+                current.next = MergeTwoLists(list1.next, list2);
             }
             else if (list1.val == list2.val)
             {
@@ -79,22 +77,17 @@ namespace LeetCode.TestService.Solutions
                     val = list2.val,
                 };
 
-                list1 = list1.next;
-                list2 = list2.next;
-
-                current.next.next = MergeTwoLists(list1, list2);
+                current.next.next = MergeTwoLists(list1.next, list2.next);
             }
             else if (list1.val < list2.val)
             {
                 current.val = list1.val;
-                list1 = list1.next;
-                current.next = MergeTwoLists(list1, list2);
+                current.next = MergeTwoLists(list1.next, list2);
             }
             else if (list1.val > list2.val)
             {
                 current.val = list2.val;
-                list2 = list2.next;
-                current.next = MergeTwoLists(list1, list2);
+                current.next = MergeTwoLists(list1, list2.next);
             }
 
             return current;
