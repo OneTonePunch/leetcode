@@ -53,8 +53,65 @@ namespace LeetCode.TestService.Solutions
 
         }
 
+        private ListNode MergeTwoListsCycle(ListNode list1, ListNode list2)
+        {
+            if (list1 == null && list2 == null)
+                return null;
+
+            ListNode result = new ListNode();
+            ListNode current = result;
+
+            while(list1!=null&&list2!=null)
+            {
+                if (list1==null)
+                {
+                    current.val = list2.val;
+                    list2 = list2.next;
+                }
+                else if (list2==null)
+                {
+                    current.val = list1.val;
+                    list1 = list1.next;
+                }
+                else if (list1.val>list2.val)
+                {
+                    current.val = list2.val;
+                    list2 = list2.next;
+                }
+                else if (list2.val>list1.val)
+                {
+                    current.val = list1.val;
+                    list1 = list1.next;
+                }
+                else if (list1.val==list2.val)
+                {
+                    current.val = list2.val;
+                    current.next = new ListNode{val = list1.val};
+                    current=current.next;
+                    list2 = list2.next;
+                    list1 = list1.next;
+                }
+
+                if (list1==null&&list2==null)
+                {
+                    current.next = null;
+                }
+                else
+                {
+                    current.next = new ListNode();
+                    current = current.next;
+                }
+            }
+
+            return result;
+
+        }
+
         private ListNode MergeTwoLists(ListNode list1, ListNode list2)
         {
+            var z = MergeTwoListsCycle(list1, list2);
+            return z;
+
             if (list1 == null && list2 == null)
                 return null;
 
