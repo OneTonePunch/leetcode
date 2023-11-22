@@ -6,12 +6,16 @@ Console.WriteLine("Start Runing Tests...");
 List<ITestRunner> tests = new List<ITestRunner>
 { 
      new PalindromeNumber(),
+     new LongestCommonPrefix(),
 };
 
 foreach (var test in tests)
 {
     var journal = test.Run();
+    Console.ForegroundColor = ConsoleColor.Green;
     Console.WriteLine($"Run test {journal.TestName}");
+    Console.ForegroundColor = ConsoleColor.White;
+    Console.WriteLine($"-----------");
     foreach (var journalItem in journal.Items)
     {
         Console.WriteLine($"\tInput: {journalItem.Input}");
