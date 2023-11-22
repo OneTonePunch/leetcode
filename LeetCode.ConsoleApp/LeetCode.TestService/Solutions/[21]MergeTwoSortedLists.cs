@@ -57,34 +57,47 @@ namespace LeetCode.TestService.Solutions
         {
             //TODO
             var result = new ListNode();
-            var lis1Values = GetValues(list1);
-            var lis2Values = GetValues(list2);
-
+            //var lis1Values = GetValues(list1);
+            //var lis2Values = GetValues(list2);
+            var currentNode = result;
             var resultedList = new List<int>();
-            int firstIndex = 0;
-            int secondIndex = 0;
 
-            while (resultedList.Count < (lis1Values.Count + lis2Values.Count))
+
+            while (list1!=null&&list2!=null)
             {
-                if (lis1Values[firstIndex] == lis2Values[secondIndex])
+                if (list1 == null)
                 {
-                    resultedList.Add(lis1Values[firstIndex]);
-                    resultedList.Add(lis2Values[secondIndex]);
-                    firstIndex++;
-                    secondIndex++;
+                    result.val = list2.val;
+                    //resultedList.Add(list2.val);
+                    list2 = list2.next;
+                }
+
+                if (list2 == null)
+                {
+                    resultedList.Add(list1.val);
+                    list1 = list1.next;
+                }
+
+                if (list1.val == list2.val)
+                {
+                    resultedList.Add(list1.val);
+                    resultedList.Add(list2.val);
+
+                    list1 = list1.next;
+                    list2 = list2.next;
                     continue;
                 }
 
-                if (lis1Values[firstIndex] < lis2Values[secondIndex])
+                if (list1.val < list2.val)
                 {
-                    resultedList.Add(lis1Values[firstIndex]);
-                    firstIndex++;
+                    resultedList.Add(list1.val);
+                    list1 = list1.next;
                     continue;
                 }
                 else
                 {
-                    resultedList.Add(lis2Values[secondIndex]);
-                    secondIndex++;
+                    resultedList.Add(list2.val);
+                    list2 = list2.next;
                     continue;
                 }
             }
