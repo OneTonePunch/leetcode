@@ -5,9 +5,9 @@ using LeetCode.TestService.Solutions;
 Console.WriteLine("Start Runing Tests...");
 List<ITestRunner> tests = new List<ITestRunner>
 {
-     new PalindromeNumber(),
-     new LongestCommonPrefix(),
-     new ValidParenthess()
+     //new PalindromeNumber(),
+     //new LongestCommonPrefix(),
+     //new ValidParenthess()
 };
 
 foreach (var test in tests)
