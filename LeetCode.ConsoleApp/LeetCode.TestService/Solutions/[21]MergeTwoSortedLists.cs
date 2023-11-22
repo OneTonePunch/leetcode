@@ -69,14 +69,13 @@ namespace LeetCode.TestService.Solutions
                 current.val = list1.val;
                 current.next = MergeTwoLists(list1.next, list2);
             }
-            else if (list1.val == list2.val)
-            {
-                current.val = list1.val;
-                current.next = new ListNode{ val = list2.val };
-
-                current.next.next = MergeTwoLists(list1.next, list2.next);
-            }
-            else if (list1.val < list2.val)
+            //else if (list1.val == list2.val)
+            //{
+            //    current.val = list1.val;
+            //    current.next = new ListNode{ val = list2.val };
+            //    current.next.next = MergeTwoLists(list1.next, list2.next);
+            //}
+            else if (list1.val <= list2.val)
             {
                 current.val = list1.val;
                 current.next = MergeTwoLists(list1.next, list2);
