@@ -100,39 +100,6 @@ namespace LeetCode.TestService.Solutions
             return current;
         }
 
-        private ListNode CreateNode(List<int> collection)
-        {
-            var index = collection.Count - 1;
-            ListNode child = null;
-            while (index >= 0)
-            {
-                var node = new ListNode
-                {
-                    val = collection[index],
-                    next = child,
-                };
-
-                index--;
-                child = node;
-            }
-
-            return child;
-        }
-        private List<int> GetValues(ListNode list1)
-        {
-
-            var result = new List<int> { list1.val };
-            
-            var current = list1;
-            while (current.next != null)
-            {
-                result.Add(current.next.val);
-                current = current.next;
-            }
-
-            return result;
-        }
-
         private List<List<ListNode>> GetInputs()
         {
             var result = new List<List<ListNode>>();
