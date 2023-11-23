@@ -62,7 +62,7 @@ namespace LeetCode.TestService.Solutions
             };
         }
 
-        private int RemoveDuplicates(int[] nums)
+        private int RemoveDuplicates2(int[] nums)
         {
             int counter = 0;
             int nextValIndex = 0;
@@ -79,6 +79,29 @@ namespace LeetCode.TestService.Solutions
                 nextValIndex++;
                 leftIndex = rightIndex+1;
                 rightIndex = nums.Length-1;
+                counter++;
+            }
+
+            return counter;
+        }
+
+        //best solution
+        private int RemoveDuplicates(int[] nums)
+        {
+            int counter = 0;
+            int nextValIndex = 0;
+            int leftIndex = 0;
+            int rightIndex = leftIndex;
+            while (leftIndex <=nums.Length - 1)
+            {
+                while (rightIndex < nums.Length&&nums[leftIndex] == nums[rightIndex])
+                {
+                    rightIndex++;
+                }
+
+                nums[nextValIndex] = nums[leftIndex];
+                nextValIndex++;
+                leftIndex = rightIndex;
                 counter++;
             }
 
